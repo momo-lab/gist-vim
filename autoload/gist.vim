@@ -1,7 +1,7 @@
 "=============================================================================
 " File: gist.vim
 " Author: Yasuhiro Matsumoto <mattn.jp@gmail.com>
-" Last Change: 17-Oct-2013.
+" Last Change: 08-Mar-2014.
 " Version: 7.1
 " WebPage: http://github.com/mattn/gist-vim
 " License: BSD
@@ -516,6 +516,7 @@ function! s:GistPost(content, private, desc, anonymous)
     if s:update_GistID(b:gist["id"])
       Gist -e
     endif
+    call s:GistGet(b:gist["id"], 0)
   else
     let loc = ''
     echohl ErrorMsg | echomsg 'Post failed: '. res.message | echohl None
@@ -572,6 +573,7 @@ function! s:GistPostBuffers(private, desc, anonymous)
     if s:update_GistID(b:gist["id"])
       Gist -e
     endif
+    call s:GistGet(b:gist["id"], 0)
   else
     let loc = ''
     echohl ErrorMsg | echomsg 'Post failed: ' . res.message | echohl None
